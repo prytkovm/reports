@@ -8,4 +8,7 @@
     ![изображение](https://user-images.githubusercontent.com/58343706/117455966-5bf59e00-af50-11eb-8762-666f18ca0727.png)
      + Челики с Linux сами разберутся
    + Переходим в папку с загруженным скриптом, Shift+ПКМ, "Открыть PoweShell здесь", и пишем "python main.py"
+
+![изображение](https://user-images.githubusercontent.com/58343706/117458272-c8719c80-af52-11eb-993c-5900e434d328.png)
+
    + Балдеем
