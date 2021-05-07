@@ -140,7 +140,6 @@ if __name__ == '__main__':
             finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%m-%d-20%y") + '.xlsx'
             template.save(filename=finished_file)
             start_date += timedelta(days=2 * between)
-            # start_date += timedelta(days=5)
         elif start_date == date(2021, 5, 9):
             put_base(workbook, ex, 'B10', start_date, student, teacher, section, stud_num, stud_group, counter)
             counter += 1
