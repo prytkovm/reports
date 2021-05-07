@@ -110,14 +110,11 @@ if __name__ == '__main__':
     path = os.getcwd()
     try:
         os.mkdir(path + '\\Отчеты')
-        os.chdir(path + '\\Отчеты')
     except FileExistsError:
         shutil.rmtree(path + '\\Отчеты')
         os.mkdir(path + '\\Отчеты')
-        os.chdir(path + '\\Отчеты')
     else:
         print("Директория \"Отчеты\" успешно создана!")
-    os.chdir(path)
     stud_num = int(input("Номер студ. билета (Без незначащего нуля, если он есть): "))
     student = input("ФИО: ")
     teacher = input("ФИО преподавателя: ")
