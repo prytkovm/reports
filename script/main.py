@@ -123,7 +123,8 @@ if __name__ == '__main__':
     teacher = input("ФИО преподавателя: ")
     section = input("Название секции: ")
     stud_group = int(input("Группа: "))
-    lambda_days = int(input("Промежуток между занятиями: "))
+    lambda_days = int(input("Промежуток между занятиями на неделе: "))
+    between = int(input("Промежуток между крайним занятием на неделе и следующим(на след. неделе):"))
     start_day = int(input("Стартовое число занятий в семестре: "))
     counter = 1
     start_date = date(2021, 2, start_day)
@@ -141,8 +142,8 @@ if __name__ == '__main__':
             put_analise(workbook, 'B29')
             finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%m-%d-20%y") + '.xlsx'
             template.save(filename=finished_file)
-            start_date += timedelta(days=5)
-            start_date += timedelta(days=5)
+            start_date += timedelta(days=2 * between)
+            # start_date += timedelta(days=5)
         elif start_date == date(2021, 5, 9):
             put_base(workbook, ex, 'B10', start_date, student, teacher, section, stud_num, stud_group, counter)
             counter += 1
@@ -150,7 +151,7 @@ if __name__ == '__main__':
             put_analise(workbook, 'B29')
             finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%m-%d-20%y") + '.xlsx'
             template.save(filename=finished_file)
-            start_date += timedelta(days=5)
+            start_date += timedelta(days=between)
         else:
             put_base(workbook, ex, 'B10', start_date, student, teacher, section, stud_num, stud_group, counter)
             counter += 1
@@ -163,5 +164,5 @@ if __name__ == '__main__':
             put_analise(workbook, 'H29')
             finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%m-%d-20%y") + '.xlsx'
             template.save(filename=finished_file)
-            start_date += timedelta(days=5)
+            start_date += timedelta(days=between)
         os.chdir(path)
