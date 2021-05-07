@@ -9,7 +9,6 @@ import shutil
 
 def put_base(file, exercises, flag, date_time, name, teacher_name, us_section, student_num, group, day_num):
     current = -1
-    # G7 M7
     file['H4'] = us_section
     file['K4'] = teacher_name
     file['C4'] = name
@@ -65,7 +64,6 @@ def put_base(file, exercises, flag, date_time, name, teacher_name, us_section, s
 
 
 def put_with_ball(file, flag, exercises):
-    # Подходы D Повторения - E
     current = -1
     if flag == 'B22':
         for i in range(22, 25):
@@ -125,43 +123,45 @@ if __name__ == '__main__':
     teacher = input("ФИО преподавателя: ")
     section = input("Название секции: ")
     stud_group = int(input("Группа: "))
+    lambda_days = int(input("Промежуток между занятиями: "))
+    start_day = int(input("Стартовое число занятий в семестре: "))
     counter = 1
-    start_date = date(2021, 2, 10)
+    start_date = date(2021, 2, start_day)
     database = 'exercises.xlsx'
     wb2 = excel.load_workbook(database)
     ex = wb2.active
     template = excel.load_workbook('template.xlsx')
     workbook = template.active
-    for days in range(18):  # 18
+    for days in range(17):  # 17
         os.chdir(path + '\\Отчеты')
-        if start_date == date(2021, 3, 31):
+        if start_date == date(2021, 4, 2):
             put_base(workbook, ex, 'B10', start_date, student, teacher, section, stud_num, stud_group, counter)
             counter += 1
             put_with_ball(workbook, 'B22', ex)
             put_analise(workbook, 'B29')
-            start_date += timedelta(days=2)
-        elif start_date == date(2021, 4, 2):
-            put_base(workbook, ex, 'B10', start_date, student, teacher, section, stud_num, stud_group, counter)
-            counter += 1
-            put_with_ball(workbook, 'B22', ex)
-            put_analise(workbook, 'B29')
+            finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%m-%d-20%y") + '.xlsx'
+            template.save(filename=finished_file)
+            start_date += timedelta(days=5)
             start_date += timedelta(days=5)
         elif start_date == date(2021, 5, 9):
             put_base(workbook, ex, 'B10', start_date, student, teacher, section, stud_num, stud_group, counter)
             counter += 1
             put_with_ball(workbook, 'B22', ex)
             put_analise(workbook, 'B29')
+            finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%m-%d-20%y") + '.xlsx'
+            template.save(filename=finished_file)
+            start_date += timedelta(days=5)
         else:
             put_base(workbook, ex, 'B10', start_date, student, teacher, section, stud_num, stud_group, counter)
             counter += 1
             put_with_ball(workbook, 'B22', ex)
             put_analise(workbook, 'B29')
-            start_date += timedelta(days=2)
+            start_date += timedelta(days=lambda_days)
             put_base(workbook, ex, 'H10', start_date, student, teacher, section, stud_num, stud_group, counter)
             counter += 1
             put_with_ball(workbook, 'H22', ex)
             put_analise(workbook, 'H29')
-        finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%m-%d-20%y") + '.xlsx'
-        template.save(filename=finished_file)
-        start_date += timedelta(days=5)
+            finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%m-%d-20%y") + '.xlsx'
+            template.save(filename=finished_file)
+            start_date += timedelta(days=5)
         os.chdir(path)
