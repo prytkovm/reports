@@ -2,7 +2,7 @@
 
 Необходимо:
   +  Python 3.6+ : https://www.python.org/ (При установке необходимо сделать активным чекбокс (ADD Python to PATH))
-  +  После установки python необходимо установить библиотеку openpyxl
+  +  После установки python необходимо загрузить библиотеку openpyxl
      + Для win10 пкм по значку windows, WindowsPowerShell, pip install openpyxl
     ![изображение](https://user-images.githubusercontent.com/58343706/117455966-5bf59e00-af50-11eb-8762-666f18ca0727.png)
      + Челики с Linux сами разберутся
