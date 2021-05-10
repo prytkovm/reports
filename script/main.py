@@ -15,30 +15,30 @@ def put_base(file, exercises, flag, date_time, day_num):
         flag = flag.replace('H10', 'I8')
     else:
         exit(-1)
-    file[flag] = date_time.strftime("%d.%m.20%y")
+    file[flag] = date_time.strftime("%d.%m.20%y")  # C8 / I8 , date
     code = ord(flag[0]) + ord('F') - ord('C')
     flag = flag.replace(flag, chr(code) + '10')
-    file[flag] = '15 минут'
+    file[flag] = '15 минут'  # F10 / L10, time
     code = ord(flag[0]) + 1
     flag = flag.replace(flag, chr(code) + '10')
-    file[flag] = 1
+    file[flag] = 1  # G10 / M10
     code = ord(flag[0]) - (ord('G') - ord('B'))
     flag = flag.replace(flag, chr(code) + '25')
-    file[flag] = 'Растяжка'
+    file[flag] = 'Растяжка'  #B25 / H25
     code = ord(flag[0]) + 4
     flag = flag.replace(flag, chr(code) + '25')
-    file[flag] = '5 минут'
+    file[flag] = '5 минут'  # F25 / L25, time
     code = ord(flag[0]) + 1
     flag = flag.replace(flag, chr(code) + '25')
-    file[flag] = 1
+    file[flag] = 1  # G25 / M25
     flag = flag.replace(flag, chr(code) + '7')
-    file[flag] = day_num
+    file[flag] = day_num  #G7 / M7
     code = ord(flag[0]) - 1
     flag = flag.replace(flag, chr(code))
     iterator_header = flag[0]
     for i in range(11, 22):
         iterator_s = 0
-        file[iterator_header + str(i)] = '1 минута'
+        file[iterator_header + str(i)] = '1 минута'  #F[i] / L[i]
         code = ord(flag[0])
         flag = flag.replace(flag, chr(code + 1) + str(i))
         file[flag] = 5
@@ -53,7 +53,7 @@ def put_base(file, exercises, flag, date_time, day_num):
         code = ord(flag[0]) - (ord('G') - ord('B'))
         flag = flag.replace(flag, chr(code) + str(i))
         exercises['C' + str(iterator_s)] = 1
-        file[flag] = exercises['B' + str(iterator_s)].value
+        file[flag] = exercises['B' + str(iterator_s)].value  # B / H [i]
         code = ord(flag[0])
         flag = flag.replace(flag, chr(code + (ord('G') - ord('B')) - 1))
         curr = -1
