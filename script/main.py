@@ -41,7 +41,7 @@ def put_base(file, exercises, flag, date_time, day_num):
         file[iterator_header + str(i)] = '1 минута'  #F[i] / L[i]
         code = ord(flag[0])
         flag = flag.replace(flag, chr(code + 1) + str(i))
-        file[flag] = 5
+        file[flag] = 5  # G[i] / M[i]
         while curr != 0:
             iterator_s += 1
             curr = exercises['C' + str(iterator_s)].value
