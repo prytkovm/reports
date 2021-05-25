@@ -15,33 +15,33 @@ def put_base(file, exercises, flag, date_time, day_num):
         flag = flag.replace('H10', 'I8')
     else:
         exit(-1)
-    file[flag] = date_time.strftime("%d.%m.20%y")  # C8 / I8 , date
+    file[flag] = date_time.strftime("%d.%m.20%y")
     code = ord(flag[0]) + ord('F') - ord('C')
     flag = flag.replace(flag, chr(code) + '10')
-    file[flag] = '15 минут'  # F10 / L10, time
+    file[flag] = '15 минут'
     code = ord(flag[0]) + 1
     flag = flag.replace(flag, chr(code) + '10')
-    file[flag] = 1  # G10 / M10
+    file[flag] = 1
     code = ord(flag[0]) - (ord('G') - ord('B'))
     flag = flag.replace(flag, chr(code) + '25')
-    file[flag] = 'Растяжка'  #B25 / H25
+    file[flag] = 'Растяжка'
     code = ord(flag[0]) + 4
     flag = flag.replace(flag, chr(code) + '25')
-    file[flag] = '5 минут'  # F25 / L25, time
+    file[flag] = '5 минут'
     code = ord(flag[0]) + 1
     flag = flag.replace(flag, chr(code) + '25')
-    file[flag] = 1  # G25 / M25
+    file[flag] = 1
     flag = flag.replace(flag, chr(code) + '7')
-    file[flag] = day_num  #G7 / M7
+    file[flag] = day_num
     code = ord(flag[0]) - 1
     flag = flag.replace(flag, chr(code))
     iterator_header = flag[0]
     for i in range(11, 22):
         iterator_s = 0
-        file[iterator_header + str(i)] = '1 минута'  #F[i] / L[i]
+        file[iterator_header + str(i)] = '1 минута'
         code = ord(flag[0])
         flag = flag.replace(flag, chr(code + 1) + str(i))
-        file[flag] = 5  # G[i] / M[i]
+        file[flag] = 5
         while curr != 0:
             iterator_s += 1
             curr = exercises['C' + str(iterator_s)].value
@@ -53,7 +53,7 @@ def put_base(file, exercises, flag, date_time, day_num):
         code = ord(flag[0]) - (ord('G') - ord('B'))
         flag = flag.replace(flag, chr(code) + str(i))
         exercises['C' + str(iterator_s)] = 1
-        file[flag] = exercises['B' + str(iterator_s)].value  # B / H [i]
+        file[flag] = exercises['B' + str(iterator_s)].value
         code = ord(flag[0])
         flag = flag.replace(flag, chr(code + (ord('G') - ord('B')) - 1))
         curr = -1
@@ -67,9 +67,9 @@ def put_with_ball(file, flag, exercises):
         while current != 0:
             iterator += 1
             current = exercises['G' + str(iterator)].value
-            if iterator >= 41:
+            if iterator >= 69:
                 iterator = 1
-                for j in range(1, 42):
+                for j in range(1, 69):
                     exercises['G' + str(j)] = 0
                 break
         if first == 'B':
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     teacher = input("ФИО преподавателя: ")
     section = input("Название секции: ")
     stud_group = int(input("Группа: "))
-    lambda_days = int(input("Промежуток между занятиями на неделе: "))
+    lambda_days = int(input("Промежуток между занятиями на неделе: "))  # Число крайнего на неделе минус число первого
     between = int(input("Промежуток между крайним занятием на неделе и следующим(на след. неделе):"))
     start_day = int(input("Стартовое число занятий в семестре: "))
     start_date = date(2021, 2, start_day)
@@ -132,7 +132,7 @@ if __name__ == '__main__':
             counter += 1
             put_with_ball(workbook, 'B22', ex)
             put_analise(workbook, 'B29')
-            finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%m-%d-20%y") + '.xlsx'
+            finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%d-%m-20%y") + '.xlsx'
             template.save(filename=finished_file)
             start_date += timedelta(days=2 * between)
         elif start_date == date(2021, 5, 9):
@@ -140,7 +140,7 @@ if __name__ == '__main__':
             counter += 1
             put_with_ball(workbook, 'B22', ex)
             put_analise(workbook, 'B29')
-            finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%m-%d-20%y") + '.xlsx'
+            finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%d-%m-20%y") + '.xlsx'
             template.save(filename=finished_file)
             start_date += timedelta(days=between)
         else:
@@ -153,7 +153,7 @@ if __name__ == '__main__':
             counter += 1
             put_with_ball(workbook, 'H22', ex)
             put_analise(workbook, 'H29')
-            finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%m-%d-20%y") + '.xlsx'
+            finished_file = 'Отчет.ТК.ФВиС.' + str(stud_num) + ' ' + start_date.strftime("%d-%m-20%y") + '.xlsx'
             template.save(filename=finished_file)
             start_date += timedelta(days=between)
         os.chdir(path)
