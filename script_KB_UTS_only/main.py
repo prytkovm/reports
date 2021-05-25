@@ -106,14 +106,14 @@ if __name__ == '__main__':
     else:
         print("Директория \"Отчеты\" успешно создана!")
     counter = 1
-    stud_num = int(input("Номер студ. билета: (Без незначащего нуля) "))
+    stud_num = int(input("Номер студ. билета (Без незначащего нуля): "))
     student = input("ФИО: ")
     teacher = "Лемешевская А.Л."
     section = "Волейбол"
-    stud_group = int(input("Группа: "))
-    lambda_days = int(input("Промежуток между занятиями на неделе: "))  # Число крайнего на неделе минус число первого
-    between = int(input("Промежуток между крайним занятием на неделе и следующим(на след. неделе):"))
-    start_day = int(input("Стартовое число занятий в семестре: "))  # таки есть мнение, что 10-е
+    stud_group = int(input("Группа (Без незначащего нуля): "))
+    lambda_days = 2
+    between = 5
+    start_day = 10
     start_date = date(2021, 2, start_day)
     database = 'exercises.xlsx'
     wb2 = excel.load_workbook(database)
