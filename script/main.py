@@ -124,7 +124,11 @@ if __name__ == '__main__':
     ex = wb2.active
     template = excel.load_workbook('template.xlsx')
     workbook = template.active
-    for days in range(days_count // 2 + 1):
+    if days_count % 2 == 0:
+        iterator = days_count // 2
+    else:
+        iterator = days_count // 2 + 1
+    for days in range(iterator):
         os.chdir(path + '\\Отчеты')
         workbook['H4'] = section
         workbook['K4'] = teacher
