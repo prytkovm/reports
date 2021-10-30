@@ -113,14 +113,18 @@ if __name__ == '__main__':
     stud_group = int(input("Группа: "))
     lambda_days = int(input("Промежуток между занятиями на неделе: "))  # Число крайнего на неделе минус число первого
     between = int(input("Промежуток между крайним занятием на неделе и следующим(на след. неделе):"))
-    start_day = int(input("Стартовое число занятий в семестре: "))
-    start_date = date(2021, 2, start_day)
+    start = input("Стартовое число занятий в семестре(дд.мм.гг): ")
+    start_day = int(start[0:2])
+    start_month = int(start[3:5])
+    start_year = int(start[6:10])
+    start_date = date(start_year, start_month, start_day)
+    days_count = int(input("Всего занятий в семестре (можно спросить у Арсения Чернова или поискать в беседе, он их за вас посчитал): "))
     database = 'exercises.xlsx'
     wb2 = excel.load_workbook(database)
     ex = wb2.active
     template = excel.load_workbook('template.xlsx')
     workbook = template.active
-    for days in range(17):  # 17
+    for days in range(days_count // 2 + 1):
         os.chdir(path + '\\Отчеты')
         workbook['H4'] = section
         workbook['K4'] = teacher
