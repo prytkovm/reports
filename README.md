@@ -5,7 +5,6 @@
   +  После установки python необходимо загрузить библиотеку [openpyxl](https://pypi.org/project/openpyxl/)
      + Для win10 пкм по значку windows, WindowsPowerShell, pip install openpyxl
     ![изображение](https://user-images.githubusercontent.com/58343706/117455966-5bf59e00-af50-11eb-8762-666f18ca0727.png)
-     + Челики с Linux сами разберутся
    + Переходим в папку с загруженным скриптом, Shift+ПКМ, "Открыть PowerShell здесь", и пишем "python main.py"
 
    + Балдеем
